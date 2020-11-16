@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -6,20 +6,20 @@ import { Subject } from 'rxjs';
     templateUrl: './sys-sound.component.html',
     styleUrls: ['./sys-sound.component.scss']
 })
-export class SysSoundComponent implements OnInit, AfterViewInit, OnDestroy {
+export class SysSoundComponent implements AfterViewInit, OnDestroy {
     private _ngUnsubscribe: Subject<void> = new Subject<void>();
     private _AFID: number; // AnimationFrame ID
+    private _source: any; // eventual stream source
+    private _fbc: any; // frequencyBinCount
+
     private _data: Uint8Array; // final audio data in the standard format
-    public audioDevice: MediaDeviceInfo;
-    public source: any; // eventual stream source
-    public fbc: any; // frequencyBinCount
+    private _audioDevice: MediaDeviceInfo;
+    private _audioContext = new AudioContext();
+    private _analyser = this._audioContext.createAnalyser();
+
     public bands: any[] = []; // eq band objects for element height etc
-    public audioContext = new AudioContext();
-    public analyser = this.audioContext.createAnalyser();
 
     constructor() { }
-
-    public ngOnInit(): void { }
 
     public ngAfterViewInit(): void {
         this.getAudioDevice();
@@ -28,14 +28,14 @@ export class SysSoundComponent implements OnInit, AfterViewInit, OnDestroy {
     private getAudioDevice() {
         navigator.mediaDevices.enumerateDevices()
             .then((devices: MediaDeviceInfo[]) => {
-                // get a specific device
-                this.audioDevice = devices.find((device: MediaDeviceInfo) => {
+                // get your specific device (eqMac in this case)
+                this._audioDevice = devices.find((device: MediaDeviceInfo) => {
                     return device.kind == "audiooutput" && device.label == "eqMac (Virtual)";
                 });
-                // We get the user media corresponding to the audio device we are willing to get
+                // getUserMedia corresponding to the audio device we've chosen (eqMac in this case)
                 navigator.mediaDevices.getUserMedia({
                     audio: {
-                        deviceId: { exact: this.audioDevice.deviceId }
+                        deviceId: { exact: this._audioDevice.deviceId }
                     }
                 }).then((stream: MediaStream) => {
                     this.connectStream(stream);
@@ -43,58 +43,52 @@ export class SysSoundComponent implements OnInit, AfterViewInit, OnDestroy {
             })
     }
 
-    public connectStream(stream: MediaStream) {
-        this.analyser.minDecibels = -90;
-        this.analyser.maxDecibels = -10;
-        this.analyser.fftSize = 32;
+    private connectStream(stream: MediaStream) {
+        this._analyser.minDecibels = -90;
+        this._analyser.maxDecibels = -10;
+        this._analyser.fftSize = 32;
 
         // https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createMediaStreamSource
-        this.source = this.audioContext.createMediaStreamSource(stream);
+        this._source = this._audioContext.createMediaStreamSource(stream);
         // this.source = this.audioContext.createMediaElementSource(this.audioElm);
 
         // https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode
         // MDN An AnalyserNode has exactly one input and one output. The node works even if the output is not connected.
-        this.source.connect(this.analyser);
+        this._source.connect(this._analyser);
 
         // MDN: Note: As a consequence of calling createMediaStreamSource(),
         // audio playback from the media stream will be re-routed into the processing graph of the AudioContext.
-        // this.analyser.connect(this.audioContext.destination);
+        // this._analyser.connect(this.audioContext.destination);
 
-        // do we need to set status: "running"?
-        this.audioContext.resume();
+        // set context.status: running
+        this._audioContext.resume();
 
         this.frameLooper();
     }
 
-    public frameLooper() {
-        // may want to run outside of zone
-        // (window as any).__Zone_disable_requestAnimationFrame = true; // may want to use
+    // Control the view
+    private frameLooper() {
+        // Opinion: Run requestAnimationFrame outside zone to perfectly optimize
         this._AFID = requestAnimationFrame(() => this.frameLooper());
-        // this.ngZone.runOutsideAngular(() => {
-        //     window.requestAnimationFrame(timestamp => {
-        //         let timerStart = timestamp || new Date().getTime();
-        //         console.log(timerStart);
-        //     });
-        // });
 
         // how many values from analyser (the "buffer" size)
-        this.fbc = this.analyser.frequencyBinCount;
+        this._fbc = this._analyser.frequencyBinCount;
 
-        // frequency data is integers on a scale from 0 to 255.
-        this._data = new Uint8Array(this.analyser.frequencyBinCount);
+        // frequency data is integers on a scale from 0 to 255
+        this._data = new Uint8Array(this._analyser.frequencyBinCount);
 
-        // this.analyser.getByteFrequencyData(this._data);
-        this.analyser.getByteTimeDomainData(this._data);
+        // this._analyser.getByteFrequencyData(this._data);
+        this._analyser.getByteTimeDomainData(this._data);
 
-        // console.log({ analyser: this.analyser });
-        // console.log({ frequencyBinCount: this.analyser.frequencyBinCount });
+        // console.log({ analyser: this._analyser });
+        // console.log({ frequencyBinCount: this._analyser.frequencyBinCount });
         // console.log({ fbc: this.fbc });
         // console.log({ _data: this._data });
         // console.log({ sampleRate: this.audioContext.sampleRate });
 
         let bandsTemp = [];
         // calculate the height of each band element using frequency data
-        for (var i = 0; i < this.fbc; i++) {
+        for (var i = 0; i < this._fbc; i++) {
             bandsTemp.push({ height: this._data[i] });
         }
         this.bands = bandsTemp;
