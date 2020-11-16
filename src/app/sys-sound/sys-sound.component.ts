@@ -11,9 +11,9 @@ export class SysSoundComponent implements OnInit, AfterViewInit, OnDestroy {
     private _AFID: number; // AnimationFrame ID
     private _data: Uint8Array; // final audio data in the standard format
     public audioDevice: MediaDeviceInfo;
-    public source: any; // what is this
-    public fbc: any; // analyser.frequencyBinCount
-    public bands: any[] = []; // actual eq band objects for element height etc
+    public source: any; // eventual stream source
+    public fbc: any; // frequencyBinCount
+    public bands: any[] = []; // eq band objects for element height etc
     public audioContext = new AudioContext();
     public analyser = this.audioContext.createAnalyser();
 
@@ -46,10 +46,7 @@ export class SysSoundComponent implements OnInit, AfterViewInit, OnDestroy {
     public connectStream(stream: MediaStream) {
         this.analyser.minDecibels = -90;
         this.analyser.maxDecibels = -10;
-        this.analyser.fftSize = 64;
-        // IF STREAMS MUST be connected to an <audio> tag
-        // this.audioElm.srcObject = stream;
-        // this.audioElm.muted = true;
+        this.analyser.fftSize = 32;
 
         // https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createMediaStreamSource
         this.source = this.audioContext.createMediaStreamSource(stream);
@@ -61,7 +58,7 @@ export class SysSoundComponent implements OnInit, AfterViewInit, OnDestroy {
 
         // MDN: Note: As a consequence of calling createMediaStreamSource(),
         // audio playback from the media stream will be re-routed into the processing graph of the AudioContext.
-        this.analyser.connect(this.audioContext.destination);
+        // this.analyser.connect(this.audioContext.destination);
 
         // do we need to set status: "running"?
         this.audioContext.resume();
@@ -89,10 +86,11 @@ export class SysSoundComponent implements OnInit, AfterViewInit, OnDestroy {
         // this.analyser.getByteFrequencyData(this._data);
         this.analyser.getByteTimeDomainData(this._data);
 
-        console.log({ analyser: this.analyser });
-        console.log({ frequencyBinCount: this.analyser.frequencyBinCount });
-        console.log({ fbc: this.fbc });
-        console.log({ _data: this._data });
+        // console.log({ analyser: this.analyser });
+        // console.log({ frequencyBinCount: this.analyser.frequencyBinCount });
+        // console.log({ fbc: this.fbc });
+        // console.log({ _data: this._data });
+        // console.log({ sampleRate: this.audioContext.sampleRate });
 
         let bandsTemp = [];
         // calculate the height of each band element using frequency data
