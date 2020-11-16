@@ -1,0 +1,33 @@
+.callout{
+    flex:100%;
+    position:relative;
+
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    border-radius: 8px;
+    background:rgba(33, 150, 243, 1);
+    color: white;
+    fill: white;
+    transition: 0.5s ease-in-out;
+    .prepend{
+        margin-right: auto;
+    }
+    .append{
+        min-width: 25px;
+        margin: 0 15px;
+        border-radius: 8px;
+    }
+}
+.callout__content {
+    flex: 1;
+    padding: 0 0 0 20px;
+    font-size: 14px;
+}
+.callout__primary{
+    font-weight: 600;
+}
+.callout__secondary{}
+
+
+
+
+

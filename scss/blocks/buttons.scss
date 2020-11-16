@@ -1,0 +1,87 @@
+/* ------------------------------------------------------------------------ *
+    !BUTTONS
+* ------------------------------------------------------------------------ */
+button,
+a.btn,
+.btn,
+.btn-sm,
+.btn-txt,
+.btn__blue,
+.btn__blue-sm,
+.btn__outline,
+.content__hashtag {
+    position: relative;
+    max-height: 47px; // matches inputs height
+    padding: 12px 23px;
+
+    border-radius: 4px;
+    border: 1px solid var(--light-text);
+    white-space: nowrap;
+    text-decoration: none;
+    text-align: center;
+    justify-content: center;
+    color: rgb(var(--body-text));
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    cursor: pointer;
+    user-select: none;
+    &:active {
+        top: 0.1em;
+    }
+    &:focus {}
+    &:disabled {
+        background-color: rgb(var(--disabled-color));
+        border: 1px solid rgb(var(--disabled-color));
+        color: rgb(var(--disabled-text));
+    }
+    // any button type can have an appended/prepended element
+    &.prepend,
+    &.append{
+        margin: 0;
+        width: auto;
+    }
+    &.prepend{
+        border-right: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    &.append {
+        border-left: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}
+
+
+.btn__blue {
+    background-color: rgb(var(--primary-color));
+    border:0;
+    color: #ffffff;
+    &:disabled {
+        background-color: rgb(var(--primary-color));
+        border:0;
+        color: rgb(var(--primary-color-dark));
+    }
+}
+.btn__outline {
+    color: rgb(var(--primary-color));
+    border: 1px solid rgb(var(--primary-color));
+    background-color: transparent;
+}
+.btn-txt{
+    max-height: inherit;
+    justify-content: unset;
+    padding: 0;
+    border: none;
+    &:disabled {
+        background-color: inherit;
+        border: none;
+    }
+}
+
+.btn__blue-sm,
+.btn-sm{
+    // max-height: 27px;
+    padding: 4px 23px;
+}

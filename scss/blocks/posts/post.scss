@@ -1,0 +1,172 @@
+
+article{
+    min-height: 135px;
+    &:empty{
+        height: auto;
+        min-height: auto;
+    }
+}
+.post__list {
+    display: block;
+    width: 100%;
+    border-radius: 4px;
+}
+.post__item {
+    width:100%;
+    margin-bottom: 2px;
+    padding: 0 10px 10px 10px;
+    border: 1px solid rgb(var(--border));
+    border-width: 1px;
+    color: rgba(0, 0, 0, 0.87);
+    background: rgb(var(--background));
+    font-size: 14px;
+    article{
+        opacity: 1;
+        transition: 0.25s ease-in-out;
+    }
+}
+
+/* ------------------------------------------------------------------------ *
+    GENERIC POST STYLES
+    XP, Job, Review
+* ------------------------------------------------------------------------ */
+.post,
+.post__content,
+.post__footer {
+    width: 100%;
+}
+// HEADER
+.post__type{}
+.post__logo{
+    margin: 0 10px 0 0;
+}
+.post__title{}
+
+
+.post__nav{
+    align-content: center;
+    width: 100%;
+    min-height: 50px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgb(var(--border));
+    icon{
+        margin: 12px;
+        cursor: pointer;
+    }
+    h2{
+        align-items: center;
+        text-transform: capitalize;
+    }
+}
+.post__content{
+    font-size: 16px;
+    line-height:1.5;
+}
+.post__footer{
+    min-height: 50px;
+}
+.post__actions{
+    flex: 1;
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+.post__action{
+    display: flex;
+    align-content: center;
+    cursor: pointer;
+    icon{
+        display:inline-block;
+        margin-right:5px;
+    }
+    heart{
+        height: 25px;
+    }
+}
+.post__comments{}
+
+
+/* ------------------------------------------------------------------------ *
+    JOB POSTS
+    Job page, Job Except, my-posts job post
+* ------------------------------------------------------------------------ */
+// CONTENT
+.job__body {
+    flex-direction: column;
+    flex-flow: row wrap;
+}
+// SIDEBAR
+.job__details{
+    align-content: flex-start;
+    padding: 30px;
+    h3{
+        margin: 0 0 5px 0;
+    }
+}
+
+.rep {
+    display:grid;
+    grid-template-columns: auto 75px;
+    justify-content: flex-end;
+}
+.rep__info {
+    justify-content: flex-end;
+    padding: 0 15px;
+    p{
+        margin: 0; // rest
+    }
+}
+.rep__name {
+    flex:100%;
+    justify-content: flex-end;
+    font-size: 22px;
+ }
+ .rep__by{
+    flex:100%;
+    justify-content: flex-end;
+    color: #a2a2a2;
+    font-size: 14px;
+ }
+.rep__rating {
+    justify-content: flex-end;
+    padding: 0 15px;
+}
+.rep__stars{
+    width: 150px;
+}
+.rep__img { position:relative; }
+.rep__icon{
+    position:absolute;
+    top:0;
+    left:0;
+    fill: #2196f3;
+}
+
+
+
+.job__agency{
+    flex: 100%;
+    display:grid;
+    grid-template-columns: 60px 1fr 150px;
+    margin: 10px 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--light-text);
+}
+.agency__details{
+    align-content: flex-end;
+    a{
+        display:inline-block;
+    }
+    p {
+        flex:100%;
+        margin:0;
+    }
+}
+.agency__img{
+    width:50px;
+    height: 50px;
+    margin-right: 15px;
+}
+.agency__overall{
+    margin-left:auto;
+}
+

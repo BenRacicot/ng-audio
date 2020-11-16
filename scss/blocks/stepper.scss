@@ -1,0 +1,167 @@
+/* ------------------------------------------------------------------------ *
+    animated sections for the stepper must be
+    1. a section element
+    2. include the number of the step as a classname. eg. section.one
+* ------------------------------------------------------------------------ */
+stepper {
+    position: relative;
+    // overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    // width: 472px;
+    width:100%;
+    border-radius: 8px;
+}
+.step {
+    position:absolute;
+    transform: translate3d(-115%, 0, 0); // hidden left by default
+    width: 100%;
+    transition: all .25s ease-in-out;
+}
+.stepper__progress{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.stepper__container{
+    width:100%;
+    min-height: 300px;
+    max-height: 500px;
+    height: 1000px;
+    // padding: 35px 40px 35px 40px;
+
+    border-radius: 8px;
+    // border: 1px solid #dadce0;
+
+    transition: all .25s ease-in-out;
+    header {
+        margin: 0 0 15px 0;
+    }
+}
+.stepper__active{
+    transform: translate3d(0, 0, 0);
+    & ~ section{
+        transform: translate3d(115%, 0, 0);
+    }
+}
+.stepper__footer{}
+
+/* ------------------------------------------------------------------------ *
+    PRESENTATION FORM
+* ------------------------------------------------------------------------ */
+.present{
+    .form-container{
+        background: rgb(var(--background));
+        width:auto;
+    }
+}
+.present__options {
+    flex: 1;
+    justify-content: space-between;
+}
+.present__option {
+    margin: 10px 0 10px 14px;
+}
+.present__btn {
+    flex-grow: 1;
+    align-content: center;
+    line-height: normal;
+    padding: 16px;
+
+    border: 0;
+    border-radius: 4px;
+    background-color: #f2f2f2;
+    fill: #757575;
+    &:hover {
+        background-color: #e5e5e5;
+    }
+}
+.present__btn-icon {
+    order: 1;
+    width: 16px;
+    height: 16px;
+}
+.present__btn-text {
+    display: none;
+    order:2;
+    flex-grow: 1;
+    justify-content: center;
+    padding: 0 0 0 11px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.present__form{}
+
+// LI gets active state
+.present__option-active {
+    order: -1;
+    flex: 1 0 auto;
+    margin-left: 0;
+    max-width: 200px;
+    icon {
+        fill: white;
+    }
+    .present__btn-text {
+        display: flex;
+    }
+    &.google button {
+        background-color: #3988f2;
+        &:hover {
+            background-color: darken(#3988f2, 5%);
+        }
+    }
+    &.twitter button {
+        background-color: #00aced;
+        &:hover {
+            background-color: darken(#3988f2, 5%);
+        }
+    }
+    &.facebook button {
+        background-color: #3a5999;
+        &:hover {
+            background-color: darken(#3a5999, 5%);
+        }
+    }
+    &.github {
+        button {
+            background-color: #f2f2f2;
+            &:hover {
+                background-color: darken(#f2f2f2, 5%);
+            }
+        }
+        .present__btn-text {
+            color: #191717;
+        }
+        .present__btn-icon {
+            fill: #191717;
+        }
+    }
+}
+
+.submit {
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    label,
+    button {
+        flex: 0 0 25%;
+    }
+}
+
+.stepper__footer {
+    width: 100%;
+    padding: 5px 0;
+    ul {
+        margin-left: auto;
+        color: #757575;
+        font-size: 12px;
+    }
+    a {
+        padding: 5px;
+        color: #757575;
+        font-size: 12px;
+    }
+}

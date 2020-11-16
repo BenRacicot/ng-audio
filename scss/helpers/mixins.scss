@@ -1,0 +1,41 @@
+/* ------------------------------------------------------------------------ *
+    MIXINS ONLY
+    https://alligator.io/sass/if-else-statements/
+* ------------------------------------------------------------------------ */
+// @mixin transform($property) {
+//   -webkit-transform: $property;
+//       -ms-transform: $property;
+//           transform: $property;
+// }
+
+// .box { @include transform(rotate(30deg)); }
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+@supports (display: -webkit-box) {
+    .ellipsis {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+        white-space: normal;
+    }
+}
+
+
+
+// horizontal scroll overflow
+@mixin scroll-x(){
+    flex-flow: nowrap;
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;// momentum-based scrolling after gesture
+
+    // hide scrollbars chrome / IE10+ & Edge
+    &::-webkit-scrollbar { display: none; }
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -ms-overflow-style: none;
+}

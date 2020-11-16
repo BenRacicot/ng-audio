@@ -1,0 +1,104 @@
+.sidenav__active-page {
+    position: relative;
+    left: 180px;
+    margin: 16px 0 16px 12px;
+    transition: 0.2s ease-in-out;
+}
+.sidenav__header {
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    // closed positioning
+    transition: 0.2s ease-in-out;
+    position: relative;
+    left: 180px;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.sidenav__navicon {
+    width: 25px;
+    margin: 22px 8px 22px 22px;
+    cursor: pointer;
+}
+.sidenav__label {
+    padding: 0 12px;
+    font-size: 16px;
+    color: #a09f9f;
+}
+.sidenav__nav {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.sidenav__section {
+    flex-direction: column;
+    padding: 2vh 0;
+}
+.sidenav__list {
+    align-content: flex-start;
+}
+.sidenav__li {
+    flex: 100%;
+    input-select,
+    input-range,
+    input-stars,
+    label {
+        width: 100%;
+    }
+    .sidenav__icon{
+        fill: #606060;
+    }
+}
+.sidenav__link {
+    flex: 1 0 100%;
+    align-items: center;
+    padding: 12px;
+    padding-left: 24px;
+    color: #606060;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    &:hover:not(.active__link) {
+        background: lighten($active, 35%);
+    }
+    &:active {
+        background: lighten($active, 20%);
+    }
+}
+
+.sidenav__form{
+    flex: 1 1 auto;
+    .sidenav__li{
+        flex-wrap: wrap;
+        padding: 20px 24px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+}
+.sidenav__input {
+    align-self: center;
+}
+.sidenav__sublist {
+    height: 0;
+    overflow: hidden;
+    transition: 0.5s ease-in-out;
+    .sidenav__link {
+        padding-left: 45px;
+        font-weight: normal;
+        color: #939393;
+    }
+}
+.sidenav__icon{
+    width: 20px;
+    margin: 0 12px 0 auto;
+    fill: rgb(var(--primary-color));
+}
+.sidenav__footer {
+    z-index: 99;
+    margin-top: auto;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    background: rgb(var(--background));
+    .sidenav__link {
+        padding: 12px 0 12px 24px;
+        margin: 2px 8px;
+        color: rgb(var(--body-text));
+    }
+}

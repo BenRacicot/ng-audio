@@ -1,0 +1,236 @@
+/* ------------------------------------------------------------------------ *
+    !FORMS AND INPUT FIELD STYLES
+
+    textarea dynamic height
+    https://stackoverflow.com/a/24676492/1440240
+* ------------------------------------------------------------------------ */
+
+// DEFAULT STYLES
+input,
+select,
+textarea {
+    flex: 100%;
+    max-height: 48px;
+    padding: 15px;
+
+    color: rgb(var(--primary-color));
+    border: solid 1px $input-border;
+    border-radius: 4px;
+    &::placeholder {
+        color: $input-border;
+    }
+    &:disabled {
+        border: solid 1px $disabled-color;
+    }
+}
+textarea {
+    max-height: none;
+    resize: vertical;
+    min-height: 48px;
+}
+label {
+    flex: 100%;
+    position: relative;
+}
+
+// when multiple items should be within the label area
+.label-wrapper{
+    width:100%;
+    margin-bottom: 10px;
+    icon {
+        margin-left: auto;
+    }
+}
+
+// CONTAINERS AND CENTERING
+// as used in login, register, claim pages
+.form {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    progress-bar {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+}
+.form-container {
+    position: relative;
+    overflow: hidden;
+    width: 472px;
+    padding: 35px 40px 36px;
+
+    border-radius: 8px;
+    border: 1px solid #dadce0;
+    header {
+        margin: 0 0 15px 0;
+        h1,
+        h2,
+        p {
+            width: 100%;
+        }
+    }
+}
+
+/* ------------------------------------------------------------------------ *
+    .input-group wraps labels and inputs
+
+    when an input has elements (ie. buttons or icons) within it
+    ex: https://getbootstrap.com/docs/4.0/components/input-group/
+* ------------------------------------------------------------------------ */
+.input-group {
+    flex: 100%;
+    position: relative;
+    .left,
+    .right {
+        flex: 1;
+    }
+    .left {
+        order: 1;
+    }
+    .right {
+        order: 2;
+    }
+    span {
+        flex: 100%;
+    }
+    input {
+        order: 2;
+        flex: 1 0;
+        padding: 13px 17px;
+    }
+    input-floating-label {
+        order: 2;
+        flex: 1 0;
+    }
+    input-validation {
+        order: 3;
+    }
+    .select {
+        order: 2;
+        flex: 1 0;
+        select {
+            width: 100%;
+        }
+    }
+
+    &.disabled {
+        fill: darken($disabled-color, 10%);
+        .append {
+            border-top: solid 1px $disabled-color;
+            border-right: solid 1px $disabled-color;
+            border-bottom: solid 1px $disabled-color;
+        }
+        input {
+            color: $disabled-color;
+        }
+    }
+
+    // standard button layout within .input-group
+    // includes setup layout for checkbox and span
+    &.submit {
+        flex: 100%;
+        // margin: 10px 0;
+        label {
+            flex: none;
+            align-self: center;
+            color: $heading-text;
+        }
+        span {
+            flex: none;
+        }
+    }
+
+    // VALIDATION SEE VALIDATION.SCSS
+}
+
+/* ------------------------------------------------------------------------ *
+    PREPEND / APPEND
+    Any input can have a button or icon seamlessly stuck to it
+    Either .prepend or .append must come before the input in the markup
+    Reason: you can't target parents or adjacent elems UP the dom chain
+
+    Cause: we must order prepend, input and append with flexbox order
+    TODO: configure for both to exist on the same field
+* ------------------------------------------------------------------------ */
+.prepend,
+.append {
+    // flex: 0 0 auto;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    min-width: 47px;
+    margin: 0;
+    border-radius: 4px;
+    z-index: 2; // make sure outline styles aren't over these
+    cursor: pointer;
+
+    // floating-label.component can prepend/append buttons or icons
+    button {
+        width: auto;
+        min-height: 47px;
+        margin: 0 10px;
+        color: white;
+    }
+
+    // input icon styles
+    background: rgb(var(--primary-color));
+    color: white;
+    fill: white;
+    &:hover{
+        border: inherit;
+    }
+}
+
+.prepend {
+    min-width: 44px;
+    order: 1;
+    justify-content: center;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.append {
+    order: 3;
+    margin-left: -1px; // cover the border-right we can't target with css
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 0;
+}
+
+.form__hide {
+    visibility: hidden;
+}
+.form__show {
+    visibility: visible;
+}
+
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    background-color: rgba(0, 0, 0, 0) !important; // doesnt work!
+    // border: 1px solid green;
+    // -webkit-text-fill-color: green;
+    // -webkit-box-shadow: 0 0 0px 1000px rgba(0,0,0,0) inset;
+    // transition: background-color 5000s ease-in-out 0s;
+    -webkit-transition-property: background-color !important;
+    -webkit-transition-delay: 99999s;
+}
+// hack to remove forced autocomplete background colors on chrome
+@-webkit-keyframes autofill {
+    to {
+        background: transparent;
+    }
+}
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}

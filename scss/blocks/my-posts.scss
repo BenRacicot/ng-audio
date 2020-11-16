@@ -1,0 +1,62 @@
+/* ------------------------------------------------------------------------ *
+    JOB POST STYLES
+    Job post page
+    Job post excerpts
+* ------------------------------------------------------------------------ */
+.my-post__header{
+    display:grid;
+    grid-template-columns: minmax(320px, 2fr) minmax(320px, auto);
+    padding: 30px 30px 15px 30px;
+    border-radius: 5px 5px 0 0;
+    background: rgb(var(--background));
+}
+// header left
+.my-post__titles{
+    flex:100%;
+}
+.my-post__title{
+    margin-bottom: 8px;
+    font-size: 25px;
+}
+.my-post__link{
+    margin:0 10px; // reset if chip
+}
+.my-post__subtitle{flex: 100%;}
+
+// header right
+.my-post__actions{
+    flex:100%;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+.my-post__dup{margin-right:5px;}
+.my-post__edit{margin-right:5px;}
+.my-post__pub{}
+
+.my-post__content{}
+.my-post__body{
+    flex: 2;
+    padding: 15px 0 25px 0;
+}
+.my-post__details{
+    flex: 1;
+    align-content: flex-start;
+    padding: 15px 0 25px 25px;
+
+    > ul {
+        display: block !important;
+    }
+}
+.my-post__invite{
+    flex:100%;
+}
+.my-post__detail{
+    padding: 6px 0;
+}
+.my-post__skills,
+.my-post__desc,
+.my-post__req{
+    h3{
+        flex:100%;
+    }
+}

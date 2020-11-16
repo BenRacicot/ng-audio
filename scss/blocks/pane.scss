@@ -1,0 +1,135 @@
+/* ------------------------------------------------------------------------ *
+    PANE STYLES BEGIN
+    Overrides sidenav layout to animate show/hide
+* ------------------------------------------------------------------------ */
+// aside.pane
+.pane {
+    position: absolute;
+    flex-direction: column;
+    width: 270px;
+    max-height: calc(100vh - 55px);
+    height: 100%;
+    left: -180px;
+    transition: 0.2s ease-in-out;
+    overflow: hidden;
+
+    background: rgb(var(--background));
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+    .active__link {
+        > a {
+            background: $active;
+        }
+        icon {
+            fill: rgb(var(--primary-color));
+        }
+        & .sidenav__sublist {
+            height: auto;
+        }
+    }
+}
+
+/* ------------------------------------------------------------------------ *
+    DASHBOARD PANELS
+* ------------------------------------------------------------------------ */
+.leftpanel,
+.rightpanel {
+    // flex-direction: column;
+    align-self: flex-start;
+    min-width: 0;
+    height: 100%;
+    transition: 0.25s ease-in-out;
+}
+
+// conversation previews
+.leftpanel {
+    display: none;
+    width: 0;
+    // padding-right: 30px;
+}
+// container for a router-outlet
+.rightpanel {
+    width: 100%;
+}
+
+/* ------------------------------------------------------------------------ *
+    OPENED pane STYLES
+    These styles must be kept global to target nested component elements
+* ------------------------------------------------------------------------ */
+
+// app-root.open-pane
+.open-pane {
+    .pane {
+        left: 0;
+    }
+    .sidenav__header {
+        left: 0;
+    }
+    .sidenav__active-page {
+        left: 0;
+    }
+    // if a sidenav exists move content over
+    aside ~ main {
+        margin-left: 270px;
+    }
+
+    // dashboard panels
+    .leftpanel {}
+    .rightpanel {}
+}
+
+.closed-pane {
+    .pane {
+        left: -270px;
+    }
+    // main {
+    //     margin-left: 70px;
+    // }
+}
+
+/* ------------------------------------------------------------------------ *
+    OPENED RIGHT PANEL STYLES
+    These styles must be kept global to target nested component elements
+* ------------------------------------------------------------------------ */
+
+.open-rightpane {
+    // messages
+    .conversations__title {
+        // font-size: 22px;
+        .conversations__time {
+            display: none;
+        }
+    }
+}
+
+.closed-rightpane {
+    .leftpanel {
+        display: flex;
+        width: 100%;
+    }
+    .rightpanel {
+        overflow: hidden;
+        width: 0;
+        padding: 0;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    // conversation previews
+    .leftpanel {
+        display: flex;
+        width: 30%;
+    }
+    // container for a router-outlet
+    .rightpanel {
+        width: 70%;
+    }
+
+    .closed-rightpane {
+        .leftpanel {
+            width: 100%;
+        }
+        .rightpanel {
+            width: 0;
+        }
+    }
+}

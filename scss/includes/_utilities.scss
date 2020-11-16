@@ -1,0 +1,13 @@
+.show{
+    display:flex!important;
+}
+.hide{
+    display:none!important;
+}
+
+/* ------------------------------------------------------------------------ *
+    used to group elements horizontally to overflow their container and scroll
+* ------------------------------------------------------------------------ */
+.scrolling-carousel{
+    @include scroll-x();
+}

@@ -1,0 +1,68 @@
+/* ------------------------------------------------------------------------ *
+    ATS CONTACTS
+    make contacts and ATS contacts work with same styles
+    Then can we convert all contacts into results so all 3 share styles?
+* ------------------------------------------------------------------------ */
+.contact__container {
+    flex: 100%;
+    padding: 0;
+    border-radius: 5px;
+    border: 1px solid #d9d9d9;
+    background: rgb(var(--background));
+    cursor: pointer;
+}
+.contact__details{
+    padding: 30px;
+    display:grid;
+    grid-template-columns: 125px repeat(4, minmax(100px, 1fr));
+    grid-gap: 20px;
+}
+.contact__additional{
+    display:none;
+    grid-column: 1 / -1;
+    &.active{
+        display:flex;
+    }
+}
+.contact__match{}
+.contact__title{}
+.contact__desc{}
+.contact__desc-primary{}
+.contact__desc-secondary{}
+
+.contact__desc-secondary,
+.contact__desc-subtext{
+    color: rgb(var(--light-text));
+}
+.contact__actions{
+    justify-content: flex-end;
+}
+.contact__job-title{}
+
+.scrolling-carousel{
+    padding:0 30px 15px 30px;
+}
+
+.contact__application {
+    flex:100%;
+    align-items: baseline;
+    padding: 30px;
+    &.grid{
+        grid-template-columns: 125px minmax(320px, 1fr) repeat(4, minmax(100px, 1fr));
+    }
+    &.odd{
+        background: rgb(var(--light-gray-bg));
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+

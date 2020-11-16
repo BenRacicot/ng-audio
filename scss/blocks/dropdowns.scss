@@ -1,0 +1,187 @@
+/* ------------------------------------------------------------------------ *
+    SITEWIDE DROPDOWN STYLES https://material-components.github.io/material-components-web-catalog/#/component/drawer
+
+    create a dropdown parent container
+    .anything:hover{
+        .dropdown{
+            display:block;
+        }
+    }
+
+    or add .active class
+    class="dropdown active"
+* ------------------------------------------------------------------------ */
+
+// OPTIONAL Container meant to position itself under input elements
+[contact-typeahead],
+[ats-typeahead-dropdown],
+[typeahead-dropdown],
+.dropdown-container{
+    position:relative;
+    height: 0;
+    order: 3;
+    width: 100%;
+}
+
+// Actual dropdown
+.dropdown {
+    display:none;
+    position: absolute;
+    width:100%;
+    padding: 10px 0 0 0;
+    margin: 2px 0 0;
+    z-index: 999;
+
+    border-radius: 4px;
+    background: rgb(var(--background));
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    // transition: all 3s ease;
+    // &.show{
+    //     display:block;
+    // }
+    // &.hide{
+    //     animation: 3s fadeout-display step-end;
+    // }
+    &.active{
+        display:block;
+    }
+    a {
+        color: rgb(var(--body-text));
+        display: flex;
+    }
+}
+
+// optional first item to show the "parent subject" for the options displayed below it
+// ATS Search Typeahead
+.dropdown__subject{}
+
+.dropdown__header {
+    padding: 5px 0 15px 0;
+    border-bottom: 1px solid rgb(var(--border));
+}
+
+.dropdown__title,
+.dropdown__subtitle,
+.dropdown__names,
+.dropdown__uname {
+    flex: 100%;
+    align-items: center;
+    height: 20px;
+    margin:0;
+    padding: 0 16px;
+
+    color: rgb(var(--heading-text));
+    font-size: 16px;
+    font-weight: 600;
+    &::first-letter {
+        text-transform: uppercase;
+    }
+}
+.dropdown__subtitle,
+.dropdown__uname {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+// <nav>
+.dropdown__list {
+    max-height: 300px;
+    overflow-y: scroll;
+    padding: 8px 0;
+}
+.dropdown__link {
+    display: flex;
+    flex: 100%;
+    height: 40px;
+    margin: 2px 0 8px 0;
+    padding: 0 16px;
+    align-items: center;
+
+    cursor: pointer;
+    color: rgb(var(--heading-text));
+    font-weight: 600;
+    transition: background-color 0.2s ease-in-out;
+    &.selectable,
+    &:hover{
+        background: rgb(var(--background));
+    }
+    &.selected,
+    &:active{
+        background: rgb(var(--background));
+    }
+    // current selection
+    &.active{
+        background:$active;
+    }
+    icon {
+        width: 20px;
+        margin-right: 32px;
+        fill: #555;
+    }
+}
+
+.dropdown__content{
+    padding:15px;
+}
+
+.list-divider {
+    width: 100%;
+    margin: 5px 0 8px;
+}
+
+.dropdown__footer {
+    padding: 15px;
+    border-top: 1px solid rgb(var(--border));
+    a {
+        color: rgb(var(--body-text));
+    }
+    .left{}
+    .right{
+        margin-left: auto;
+        justify-content: flex-end;
+    }
+}
+
+
+
+// DROPDOWN WITH CHECKBOXES FOR FORM
+
+
+
+
+
+/* ------------------------------------------------------------------------ *
+    opening on :focus may not work for dropdowns with lots of options (messaging search)
+
+
+
+
+
+* ------------------------------------------------------------------------ */
+
+// DROPDOWN SELECTABLE LIST (autocomplete)
+.dropdown__options{}
+.dropdown__option{}
+input {
+    ~ .dropdown{
+        display:block;
+    }
+    .dropdown__options{
+
+    }
+    .dropdown__option{
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+

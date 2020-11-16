@@ -1,0 +1,9 @@
+<div class="eq-wrapper">
+    <div class="eqbands">
+        <div *ngFor="let band of bands; index as i; trackBy: trackByFn;"
+            class="eqband"
+            [ngStyle]="{'padding-top': band.height+'px'}">
+            {{i+1}}
+        </div>
+    </div>
+</div>

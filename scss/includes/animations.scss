@@ -1,0 +1,49 @@
+// used on masthead backgrounds
+.gradient {
+	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+	background-size: 400% 400%;
+	animation: Gradient 15s ease infinite;
+}
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+// fade to black / fade in. used on module loader in mastheads
+.masthead__loader,
+[mastead-loader]{
+    opacity: 0;
+    transition: 0.5s ease-in-out;
+}
+.fade-out{
+    opacity: 0;
+    transition: 0.5s ease-in-out;
+}
+.fade-in{
+    opacity: 1;
+    transition: 0.5s ease-in-out;
+}
+
+// REMOVE CONTENT FROM DOM
+// Such as .view-as-public on private profiles
+// animation: animate-from-dom .25s linear .25s 1 normal forwards;
+@keyframes animate-from-dom {
+	0% {
+        transform: scale(1);
+        max-height: 1000px;
+        opacity: 1;
+	}
+	100% {
+        transform: scale(0);
+        max-height: 0;
+        opacity: 0;
+	}
+}
+

@@ -1,0 +1,16 @@
+// https://codepen.io/BRacicot/pen/WLQXXE
+.horizontal__scroll{}
+.horizontal__list{
+    display:block;
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;// momentum-based scrolling after gesture
+
+    // hide scrollbars chrome / IE10+ & Edge
+    &::-webkit-scrollbar { display: none; }
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -ms-overflow-style: none;
+    li{
+        display:inline-block;
+    }
+}

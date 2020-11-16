@@ -1,0 +1,80 @@
+/* ------------------------------------------------------------------------ *
+    SEARCH FORM
+    These styles are defined for sitewide search forms that have too many
+    variations to become its own component yet have the same general styles
+    Used by: Contacts.component, Messaging.component
+* ------------------------------------------------------------------------ */
+.searchform {
+    min-width: 275px;
+    width:100%;
+    max-width: 720px;
+    // margin: 0 0 30px 0;
+    &.active form{
+        transform: scale(1.025);
+        &::before {
+            opacity: 1;
+        }
+    }
+    form {
+        flex: 1;
+        height: 42px;
+        position: relative;
+        transition: all 250ms;
+        &::before {
+            content: ' ';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.24);
+            opacity: 0;
+            border-radius: 4px;
+            transition: opacity 250ms;
+        }
+
+        &:focus::before {
+            opacity: 1;
+        }
+        &:active::before {
+            opacity: 1;
+        }
+    }
+    input {
+        border: none;
+    }
+
+    // SEARCH FORM - DEPRECATED by CVA INPUT COMPONENTS
+    // custom styles override general .floatlabel and .prepend/.append
+    // .prepend,
+    // .append {
+    //     fill: rgba(0, 0, 0, 0.5);
+    //     background-color: white;
+    //     // border: solid 1px #cae6fc;
+    // }
+    // .prepend {
+    //     border-right: 0;
+    // }
+    // .append {
+    //     border-left: 0;
+    //     margin-left: -1px; // cover the border-right we can't target with css
+    //     padding-right: 0;
+    // }
+}
+
+// TODO
+// dropdown styles
+.sort__options {
+    position: relative;
+    cursor: pointer;
+    // trigger dropdown styles (base.scss)
+    &:hover {
+        .dropdown {
+            display: block;
+        }
+    }
+    icon {
+        width: 50px;
+        fill: #888888;
+    }
+}

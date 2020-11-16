@@ -1,0 +1,54 @@
+/* ------------------------------------------------------------------------ *
+    icon.component styles
+* ------------------------------------------------------------------------ */
+icon {
+    fill: inherit;
+    align-self: center;
+    justify-content: center;
+    position:relative;
+    min-width: 15px;
+    width: 25px;
+    min-height: 16px; // matching body font size
+    max-height: 25px;
+
+    svg {
+        display: inline-block;
+        all: inherit; // inherit everything
+        margin: 0; // dont inherit margin
+        position:static;
+        z-index: 2; // so :before/:after can be used as a BG
+    }
+    &.up {
+        fill: #80FFA7!important;
+        transform: rotate(90deg)
+    }
+    &.down {
+        fill: #FF8484!important;
+    }
+    // content projection - <span> content show to the right of the icon
+    span{
+
+    }
+}
+
+[icon="circle-info"]{
+    width: 18px;
+}
+[icon="pro-badge"]{
+    fill: rgb(var(--primary-color));
+}
+
+// DEFAULT FILL COLORS FOR BRANDS
+[icon="sketchfab"]{
+    fill: #1faad8;
+}
+[icon="twitter"]{
+    fill: #1DA1F2;
+}
+
+
+
+
+
+
+

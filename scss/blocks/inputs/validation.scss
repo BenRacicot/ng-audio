@@ -1,0 +1,88 @@
+/* ------------------------------------------------------------------------ *
+    GENERAL VALIDATION STYLES
+* ------------------------------------------------------------------------ */
+input-validation {
+    position: relative;
+    align-items: flex-start;
+    width: 100%;
+    height: 24px;
+}
+.validation__helper-text,
+.validation__disabled-text,
+.validation__error-text {
+    position: absolute;
+    top: -3px;
+    width: 100%;
+    height: 20px;
+    padding: 0 15px;
+    margin: 0;
+    opacity: 0;
+    transition: all 0.25s ease-in;
+}
+.validation__disabled-text,
+.validation__helper-text {
+    top: 3px;
+    opacity: 1;
+    color: var(--light-text);
+}
+.validation__error-text {
+    color: $red;
+}
+
+// error on the inputs directly if no wrapping label
+.input--error {
+    icon {
+        opacity: 0.5;
+    }
+    input,
+    textarea {
+        border: solid 1px $red !important;
+    }
+    .append,.prepend{
+        fill: var(--static-border-color);
+    }
+    .validation__helper-text {
+        opacity: 0;
+    }
+    .validation__disabled-text {
+        opacity: 0;
+    }
+    .validation__error-text {
+        top: 3px;
+        opacity: 1;
+    }
+}
+
+.disabled {
+    .validation__helper-text {
+        opacity: 0;
+    }
+    .validation__error-text {
+        opacity: 0;
+    }
+    .validation__disabled-text{
+        top: 3px;
+        opacity: 1;
+    }
+}
+
+
+/* ------------------------------------------------------------------------ *
+    SUCCESS MESSAGING
+    inputs
+    forms
+* ------------------------------------------------------------------------ */
+.submitted {
+    display: none;
+    opacity: 0;
+    padding: 0 1vw;
+    transition: 0.5s ease-in-out;
+    transform: translate3d(0, 0, 0);
+    icon {
+        width: 20px;
+        fill: $green;
+    }
+    &.success {
+        opacity: 1;
+    }
+}

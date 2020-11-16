@@ -1,0 +1,43 @@
+/* ------------------------------------------------------------------------ *
+    NAVIGATION
+    Site-wide navigation styles
+* ------------------------------------------------------------------------ */
+
+.header__logo{}
+.header__review,
+.header__find{
+    justify-content:center;
+    padding: 20px 0;
+}
+.header__review{}
+.header__find{}
+.header__search{
+    min-width: 300px;
+}
+.header__more{
+    padding: 0 20px;
+}
+// visible when unauthed
+.header__login,
+.header__signup{}
+.header__login{}
+.header__signup{}
+// visible when authed
+.header__authed{}
+
+// main {
+//     flex: 1 1 25%;
+//     align-content: flex-start;
+//     height: calc(100vh - 55px);
+// }
+
+.profile__grid{
+    display: grid;
+    grid-column-gap: 1.5vw;
+    grid-template-columns:
+        minmax(calc(calc(100% - 1440px) / 2), 1fr)
+            minmax(250px, 250px)
+            minmax(250px, 1190px)
+        minmax(calc(calc(100% - 1440px) / 2), 1fr)
+}
+

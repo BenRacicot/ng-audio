@@ -1,0 +1,619 @@
+/* ------------------------------------------------------------------------ *
+    Base Styles
+* ------------------------------------------------------------------------ */
+body{
+    background: rgb(var(--background));
+}
+
+.navigation,
+aside {
+    background: rgb(var(--background));
+}
+aside{
+    flex-flow: column;
+}
+/* ------------------------------------------------------------------------ *
+    BASE LAYOUT
+* ------------------------------------------------------------------------ */
+app-root {
+    min-height: 100vh;
+    min-width: 100%; // helps smooth loading
+    align-content: flex-start;
+}
+
+// Main pages with left pane
+module-loader:first-child,
+applicant-tracking,
+profile,
+feed,
+recruiter-profile,
+post-page,
+posts-public,
+public-position,
+public-update,
+public-project,
+public-post-header,
+job,
+job-posts,
+job-search,
+search-page,
+rankings-page,
+contacts-page,
+settings-page,
+public-project,
+masthead-public,
+public-update,
+agency-admin{
+    width:100%;
+}
+
+
+// default styles without a pane
+main {
+
+    align-content: flex-start;
+    justify-content: center;
+    height: calc(100vh - 55px);
+    padding: 30px 30px 0 30px;
+    // overflow-y: auto;
+    transition: 0.2s ease-in-out;
+}
+
+messaging-page,
+settings-page,
+contacts-page,
+search-page,
+my-reviews-page,
+recruiter-claim-page{
+    position: relative;
+}
+header {
+    width: 100%;
+}
+
+/* ------------------------------------------------------------------------ *
+    MAIN POST/SIDEBAR LAYOUT
+    .content wrapper to center and size sections of content
+* ------------------------------------------------------------------------ */
+.content {
+    width: 100%;
+    max-width: calc(920px * var(--ppi-scale));
+}
+.content__primary{
+    flex-direction: column;
+    width:100%;
+    // if sidebar is on the right
+    ~ .content__secondary{
+        margin-left: 30px;
+    }
+}
+.content__secondary{
+    display:none;
+    flex:1;
+    position:sticky;
+    top: -5px;
+    // max-width:340px;
+    height: 100vh;
+    .sidebar{
+        flex:1;
+        position:sticky;
+        top: 55px;
+        background: transparent;
+    }
+    .card{
+        align-content: flex-start;
+        height: 800px;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid rgb(var(--border));
+    }
+}
+
+// GENERIC position:sticky;
+.sticky {
+    position: sticky;
+    top: 0;
+}
+
+// GENERIC 1/2 sections
+.left,.right{
+    flex: 1;
+}
+
+.avatar{
+    min-width: 50px;
+    min-height: 50px;
+    margin: 0;
+    img{
+        border-radius: 50%;
+        width:100%;
+        max-width: 50px;
+        height: 50px;
+    }
+}
+
+/* ------------------------------------------------------------------------ *
+    CSS only placeholder for contenteditable
+* ------------------------------------------------------------------------ */
+[contenteditable=true]:empty:before{
+    content: attr(placeholder);
+    pointer-events: none;
+    display: block; /* For Firefox */
+    color: rgb(var(--light-text));
+    opacity: .35;
+}
+
+/* ------------------------------------------------------------------------ *
+    GRID DEFAULTS
+* ------------------------------------------------------------------------ */
+.grid {
+    display: grid;
+    // default dynamic columns with auto-fit immediate child elems
+    // --grid-columns can be updated by components (ie ResultsComponent)
+    grid-template-columns: repeat(var(--grid-columns), minmax(100px, 1fr));
+    align-items: center;
+}
+
+.grid-header,
+.grid-footer{
+    grid-column: 1 / -1;
+}
+.grid-header{
+    margin-bottom: 30px;
+}
+.grid-footer{
+    margin-top: 26px;
+}
+
+// !RANKING PAGE GRID
+.rank__result__grid,
+.rank__sort__grid{
+    display:grid;
+    grid-template-columns: minmax(100px, 1fr) minmax(320px, 1fr) repeat(4, minmax(100px, 1fr));
+    grid-gap: 1em;
+}
+
+// !SEARCH PAGE GRID
+.search__result__grid,
+.search__sort__grid{
+    display:grid;
+    grid-template-columns: 60px minmax(320px, 1fr) repeat(4, minmax(100px, 1fr));
+    grid-gap: 1em;
+}
+
+// !MY-JOBS APPLICANT GRID
+.applicant__grid{
+    display:grid;
+    grid-template-columns: 150px repeat(3, minmax(100px, 1fr));
+    grid-gap: 1em;
+}
+
+
+/* ------------------------------------------------------------------------ *
+    NAVIGATION & HEADER LAYOUTS
+    Site-wide navigation styles
+* ------------------------------------------------------------------------ */
+.navigation{
+    position: sticky;
+    align-content: center;
+    flex: 100%;
+    width: 100%;
+    top: 0;
+    // height: 55px;
+    padding: 10px 0;
+    z-index: 999;
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+    transition: all 0.5s ease-in-out;
+}
+
+// FONTS
+.header__review,
+.header__find,
+.header__feed{
+    padding: 20px 0;
+    white-space: nowrap;
+    color: #66757f;
+    fill: #66757f;
+    font-weight: bold;
+    font-size: 13px;
+    text-transform: uppercase;
+
+}
+
+// authed-logo appears centered when authenticated and links to home
+.header__logo{
+    width: 65px;
+    align-self: center;
+    justify-content: start;
+    position:relative;
+    a{
+        padding: 0 20px;
+    }
+
+    icon,
+    img{
+        width: 25px;
+        max-width: none;
+        height: 25px;
+    }
+    icon {
+        width: 100px;
+    }
+}
+
+/* ------------------------------------------------------------------------ *
+    Stacking items anywhere
+    []=
+* ------------------------------------------------------------------------ */
+.stacked{
+    // could be an image or icon to left of stacked content
+    margin-right: 10px;
+    .left{
+        float:left;
+    }
+}
+// wrapper div for two stacked elements
+.stack{
+    flex: 1;
+    .top,
+    .bottom{
+        display:inline-block;
+        width:100%;
+    }
+    .bottom{}
+}
+
+// ARRANGEMENTS
+.header__left,
+.header__right{
+    flex: 1;
+    align-items: center;
+}
+.header__right{}
+.header__ctas{
+    order:6;
+    flex: 0 100%;
+}
+.header__review,
+.header__find{
+    flex: 0 50%;
+    justify-content:center;
+    align-content: center;
+}
+.header__review,
+.header__find{
+    display:flex;
+}
+
+.header__feed{
+    display:none;
+    padding: 12px 12px 12px 25px;
+}
+.header__search{
+    order:2;
+    flex: 1;
+    min-width: 190px;
+}
+.header__more{
+    order:3;
+    padding: 0 20px;
+}
+.header__authed{
+    order:4;
+}
+// shows to unauthed only
+.header__login,
+.header__signup{
+    flex: 0 calc(50% - 15px);
+}
+.header__login{
+    color: white;
+    order:7;
+    margin: 0 5px 0 10px;
+}
+.header__signup{
+    order:8;
+    margin: 0 10px 0 5px;
+}
+
+
+/* ------------------------------------------------------------------------ *
+    PAGE STYLES
+* ------------------------------------------------------------------------ */
+job-masthead,
+recruiter-masthead,
+agency-masthead{
+    width: 100%;
+    min-height: 350px;
+    justify-content: center;
+}
+
+// PAGE MASTHEAD LAYOUT
+.masthead {
+    width: 1160px;
+}
+.masthead__content{
+    width:100%;
+    .badge,
+    .chip__disabled{
+        margin:0 10px;
+        border-width: 1px;
+    }
+}
+.masthead__left{
+    flex: 4;
+}
+.masthead__left,
+.masthead__right {
+    align-self: flex-end;
+    margin: 30px 0;
+}
+.masthead__rating{
+    margin: 10px 0;
+}
+.masthead__img {
+    flex: 1;
+    align-self: flex-end;
+    position: relative;
+    top: 40px;
+}
+
+.masthead__location {}
+.masthead__city {}
+.masthead__state {}
+.masthead__recruiters{}
+
+
+
+/* ------------------------------------------------------------------------ *
+    PROFESSIONAL PROFILE BASE STYLES
+* ------------------------------------------------------------------------ */
+// public/private masthead
+masthead-public,
+masthead-private{
+    flex:1;
+    &.open{
+        .masthead__content,
+        .masthead__loader{
+            height: 400px;
+        }
+        .masthead__pag{
+            opacity: 1;
+        }
+    }
+    .post__header,
+    .post__content,
+    .post__footer{
+        display:none;
+    }
+}
+.masthead__content,
+.masthead__loader{
+    position:relative;
+    width: 100%;
+    height: 0;
+    background: gray;
+    transition: 0.25s ease-in-out;
+    picture,
+    img{
+        width:100%;
+        height: inherit;
+    }
+}
+.masthead__content{
+    z-index: 100;
+}
+.masthead__wrapper,
+.masthead__header{
+    // VIEW AS OWNER OR PUBLIC STYLES
+    &.view-as-public{
+        profile-controls{
+            height: 0;
+            opacity: 0;
+        }
+    }
+}
+.masthead__pag{
+    position:absolute;
+    height: 42px;
+    top: 70%;
+    right:0;
+    bottom:0;
+    left: 65vw;
+    margin: auto;
+    opacity: 0;
+    transition: 0.25s ease-in-out;
+}
+.masthead__pag-item{
+    margin-right: 10px;
+}
+masthead-thumb{
+    width:72px;
+    height: 40px;
+}
+
+/* ------------------------------------------------------------------------ *
+    EXPERIENCE POSTS - XPs
+* ------------------------------------------------------------------------ */
+.oauth__link{
+    display: flex;
+    margin: 10px;
+    icon{
+        margin-right: 10px;
+    }
+}
+
+post-options{
+    margin-left: auto;
+}
+.item__header {
+    padding: 10px 2px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    cursor: move;
+    h3{
+        margin:0;
+        color: rgb(var(--body-text));
+    }
+    .item-visibility {
+        align-items: center;
+        input, label {
+            flex: unset;
+            margin-right: 4px;
+        }
+    }
+}
+
+
+
+/* ------------------------------------------------------------------------ *
+    LIST ITEMS
+    Styled list items
+* ------------------------------------------------------------------------ */
+ul.styled {
+    padding-inline-start: 40px;
+    li{
+        display: list-item;
+        width: 100%;
+    }
+}
+ul.styled {
+    list-style: disc;
+    list-style-type: disc;
+    li{
+        list-style-type: disc;
+    }
+}
+ol.styled {
+    li {}
+}
+
+
+
+
+
+/* ------------------------------------------------------------------------ *
+    REVIEW STYLES
+    Used on Recruiter profiles, Agency profiles and My Reviews
+* ------------------------------------------------------------------------ */
+review {
+    align-content: flex-start;
+    justify-content: center;
+}
+.reviews {
+    padding: 0;
+    margin: 0;
+}
+.review {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #d3d3d3;
+}
+.reviews__heading {
+    flex: 100%;
+    margin-top: 30px;
+    padding: 20px 0;
+    border-bottom: 1px solid #dedede;
+}
+
+.review__meta {
+    align-content: flex-start;
+    h4 {
+        color: black;
+        margin-top:0;
+    }
+    p {
+        margin: 4px 0;
+    }
+    .name{
+        flex:100%;
+        margin: 4px 0;
+    }
+    .info{
+        flex:100%;
+    }
+    .date{
+        flex:100%;
+    }
+    .industry{
+        flex:100%;
+    }
+    .interact {
+        flex:100%;
+    }
+    flag {
+        margin: 0 10px;
+        align-self: flex-end;
+    }
+}
+
+.review__body {
+    flex: 2;
+    align-content: flex-start;
+    max-width: 920px;
+}
+.review__written{
+    flex: 2;
+    align-content: flex-start;
+}
+.review__title {
+    flex:100%;
+}
+.review__statement {
+    flex:100%;
+}
+.review__ratings {
+    flex-direction: column;
+    flex: 1;
+    min-width: 320px;
+}
+.review__rating {
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    margin: 4px 0;
+    margin-left: auto;
+    h4 {
+        margin: 0;
+    }
+}
+.review__stars {}
+static-stars {
+    min-width: 150px;
+}
+
+/* ------------------------------------------------------------------------ *
+    COMMENTS - here to keep DRY
+    Used on Recruiter profiles, Agency profiles and My-Reviews
+* ------------------------------------------------------------------------ */
+recruiter-page{
+    comments{
+        justify-content: center;
+        .comments__header{
+            p{
+                max-width: 700px;
+            }
+        }
+    }
+    review{
+        justify-content: center;
+    }
+}
+
+// nesting styles
+comments{
+    padding: 13px 0;
+    .comments__list{
+        margin-left: 5%;
+    }
+    > .comments__list{
+        margin-left: 0;
+    }
+}
+.comments{
+    flex:100%;
+}
+

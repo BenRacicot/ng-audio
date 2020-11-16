@@ -1,0 +1,50 @@
+.ripple {
+    --width: 100%;
+    --time: 0.7s;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+
+    // any text within .ripple
+    span {
+        position: relative;
+        z-index: 5;
+        transition: color var(--time);
+    }
+
+    // span is added dynamically with the @Directive
+    .effect  {
+        border-radius: 100%;
+        position: absolute;
+        display: block;
+        z-index: 0;
+        width: 0;
+        height: 0;
+        background: rgba(33, 150, 243, 0.2);
+        transform: translate(-50%, -50%);
+        transition: width var(--time), padding-top var(--time);
+    }
+
+    // clicked ripple (used with click listeners)
+    &.ripple-active {
+        span {
+            color: #606060;
+        }
+        .effect  {
+            width: calc(100% * 2.25);
+            padding-top: calc(100% * 2.25);
+        }
+    }
+
+    // hover ripple (used with mousover/mouseout listeners)
+    // &:hover{
+    //     span{
+    //         color: #606060;
+    //     }
+    //     .effect{
+    //         width: calc(var(--width)*2.25);
+    //         padding-top: calc(var(--width)* 2.25);
+    //     }
+    // }
+}
+

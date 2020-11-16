@@ -1,0 +1,118 @@
+/* ------------------------------------------------------------------------ *
+    !SEARCH !RESULTS
+    .result is the block
+* ------------------------------------------------------------------------ */
+// ul
+.results {
+    align-self: start;
+    align-content: flex-start;
+    width:100%;
+    overflow: auto;
+}
+// li
+.result {
+    flex: 100%;
+    margin: 1.5vh 0 0 0;
+    padding: 30px;
+
+    border-radius: 5px;
+    border: 1px solid #d9d9d9;
+    background: rgb(var(--background));
+    h3 {
+        margin:0;
+    }
+    a {
+        display: block;
+        flex: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+.result__match{
+    .result__title {
+        font-weight: bold;
+    }
+}
+.result__name {
+    height: 50px;
+    .chip__sm{
+        display:block;
+        margin: 0 5px;
+    }
+}
+// typically an h3
+.result__title{
+    align-content: flex-start;
+    width:100%;
+    margin: 0; // reset
+    color: $heading-text;
+}
+// typically an h4
+.result__desc{
+    flex: 100%;
+    margin: 3px 0; // reset
+    font-size: 12px;
+    color: $heading-text;
+}
+.result__pro{
+    width: 20px;
+    top: -1px;
+}
+// optional spans within the h4
+.result__desc-primary,
+.result__desc-secondary,
+.result__desc-subtext{
+    flex: 100%;
+}
+.result__desc-primary{}
+.result__desc-secondary,
+.result__desc-subtext{
+    color: var(--light-text);
+}
+.result__desc-subtext{
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.result__image {
+    width: 50px;
+    img {
+        width: 100%;
+        max-width: 50px;
+        border-radius: 5px;
+    }
+}
+
+.result__stars{
+    max-width: 110px; // when static stars shares a column
+}
+.result__rating {
+    .result__stars{
+        max-width: 150px; // when static stars has its own column
+    }
+}
+
+.result__rank {
+    align-items: center;
+    icon {
+        width: 20px;
+        margin: 0 5px;
+    }
+}
+.result__followers {}
+.result__actions {
+    justify-content: flex-end;
+}
+
+
+/* ------------------------------------------------------------------------ *
+    APPLICANT STYLES
+* ------------------------------------------------------------------------ */
+.job__skills{
+    .chip{
+        margin-bottom: 0;
+    }
+}
+

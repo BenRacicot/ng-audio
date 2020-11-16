@@ -1,0 +1,22 @@
+
+:host {
+    width:100%;
+}
+
+.eq-wrapper{
+    width:100%;
+    height: 30vw;
+    justify-content: center;
+}
+.eqbands{
+    position:relative;
+    align-items: flex-end;
+    width:50%;
+    justify-content: space-between;
+}
+.eqband{
+    position: relative;
+    width:calc(1vw);
+    height: 0px;
+    background: rgb(255, 255, 255);
+}

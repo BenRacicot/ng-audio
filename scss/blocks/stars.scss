@@ -1,0 +1,45 @@
+/* ------------------------------------------------------------------------ *
+    STAR RATING STYLES
+    stars are empty be default
+    .star__solid is a gold star
+* ------------------------------------------------------------------------ */
+static-stars{
+    max-width: 175px;
+}
+
+.review__star {
+    fill: white;
+    stroke: #ccc;
+    transform: scale(0.8);
+    transition: transform 200ms ease-in-out;
+    path {
+        transition: fill 200ms ease-in-out, stroke 100ms ease-in-out;
+    }
+}
+
+// Individual SVG Star
+.star {
+    cursor: pointer;
+    width: 30px;
+    height: auto;
+
+    fill: white;
+    stroke: #ccc;
+
+    transform: scale(0.8);
+    transition: transform 200ms ease-in-out;
+    path {
+        transition: fill 200ms ease-in-out, stroke 100ms ease-in-out;
+    }
+    &:focus{
+        border: 0;
+        outline: none;
+        user-select: none;
+        stroke: #000000;
+    }
+}
+.star__active {
+    fill: #ffbb00;
+    stroke: darken(#ffbb00, 10%);
+}
+

@@ -1,0 +1,66 @@
+// Default scale is 1:1
+:root{
+    --ppi-scale: 1;
+}
+
+// 1.25 pixel density ratio
+// @media only screen and (min-resolution: 1.25dppx) {
+//     :root{
+//         --ppi-scale: 1.25;
+//     }
+//     body { font-size: 17px; }
+// }
+// 1.5 pixel density ratio
+@media only screen and (min-resolution: 1.5dppx) {
+    :root{
+        --ppi-scale: 1.05;
+    }
+    body { font-size: 17px; }
+}
+// 2x pixel density ratio (RETINA)
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) {
+    :root{
+        --ppi-scale: 1.1;
+    }
+    body { font-size: 17px; }
+}
+// 3x pixel density ratio
+@media
+only screen and (-webkit-min-device-pixel-ratio: 3),
+only screen and (   min--moz-device-pixel-ratio: 3),
+only screen and (     -o-min-device-pixel-ratio: 3/1),
+only screen and (        min-device-pixel-ratio: 3),
+only screen and (                min-resolution: 321dpi),
+only screen and (                min-resolution: 3dppx) {
+    :root{
+        --ppi-scale: 1.15;
+    }
+    body { font-size: 18px; }
+}
+// 4x pixel density ratio
+@media
+only screen and (-webkit-min-device-pixel-ratio: 4),
+only screen and (   min--moz-device-pixel-ratio: 4),
+only screen and (     -o-min-device-pixel-ratio: 4/1),
+only screen and (        min-device-pixel-ratio: 4),
+only screen and (                min-resolution: 481dpi),
+only screen and (                min-resolution: 4dppx) {
+    :root{
+        --ppi-scale: 1.2;
+    }
+    body { font-size: 19px; }
+}
+
+// debuggin
+// body{
+//     &::before {
+//         counter-reset: variable var(--ppi-scale);
+//         content: counter(variable);
+//     }
+// }
