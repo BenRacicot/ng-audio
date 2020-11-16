@@ -18,6 +18,7 @@ export class SysSoundComponent implements AfterViewInit, OnDestroy {
     private _analyser = this._audioContext.createAnalyser();
 
     public bands: any[] = []; // eq band objects for element height etc
+    public freqs: number[];
 
     constructor() { }
 
@@ -60,6 +61,8 @@ export class SysSoundComponent implements AfterViewInit, OnDestroy {
         // audio playback from the media stream will be re-routed into the processing graph of the AudioContext.
         // this._analyser.connect(this.audioContext.destination);
 
+        this.freqs = this.calcFreqs(this._analyser.context.sampleRate, this._analyser.fftSize);
+
         // set context.status: running
         this._audioContext.resume();
 
@@ -76,9 +79,10 @@ export class SysSoundComponent implements AfterViewInit, OnDestroy {
 
         // frequency data is integers on a scale from 0 to 255
         this._data = new Uint8Array(this._analyser.frequencyBinCount);
+        this._analyser.getByteFrequencyData(this._data);
 
-        // this._analyser.getByteFrequencyData(this._data);
-        this._analyser.getByteTimeDomainData(this._data);
+        // this._data = new Float32Array(this._analyser.frequencyBinCount);
+        // this._analyser.getFloatFrequencyData(this._data);
 
         // console.log({ analyser: this._analyser });
         // console.log({ frequencyBinCount: this._analyser.frequencyBinCount });
@@ -92,6 +96,22 @@ export class SysSoundComponent implements AfterViewInit, OnDestroy {
             bandsTemp.push({ height: this._data[i] });
         }
         this.bands = bandsTemp;
+    }
+
+    // calculate the frequency resolutions being displayed - sampleRate/fftSize
+    private calcFreqs(sampleRate, fftSize) {
+        // const fqRange = this._analyser.context.sampleRate / this._analyser.fftSize; // ie. 48000 / 32 = 1500 (1500 across 32 bands)
+        const bands = fftSize/2; // bands are half the fftSize
+        let fqRange = sampleRate / bands;
+        const div = fqRange / bands; //
+        let allocated = [];
+
+        for ( let i = 0, j = bands; i < j; i++ ) {
+            fqRange = Math.round(fqRange - div);
+            allocated.push(fqRange + '+');
+        }
+        // console.log(allocated.reverse());
+        return allocated.reverse();
     }
 
     // optimize ngFor
