@@ -81,9 +81,6 @@ export class SysSoundComponent implements AfterViewInit, OnDestroy {
         this._data = new Uint8Array(this._analyser.frequencyBinCount);
         this._analyser.getByteFrequencyData(this._data);
 
-        // this._data = new Float32Array(this._analyser.frequencyBinCount);
-        // this._analyser.getFloatFrequencyData(this._data);
-
         // console.log({ analyser: this._analyser });
         // console.log({ frequencyBinCount: this._analyser.frequencyBinCount });
         // console.log({ fbc: this.fbc });
@@ -94,11 +91,12 @@ export class SysSoundComponent implements AfterViewInit, OnDestroy {
         // calculate the height of each band element using frequency data
         for (var i = 0; i < this._fbc; i++) {
             bandsTemp.push({ height: this._data[i] });
+            // hue = i/this._analyser.frequencyBinCount * 360; // hsl(' + hue + ', 100%, 50%)
         }
         this.bands = bandsTemp;
     }
 
-    // calculate the frequency resolutions being displayed - sampleRate/fftSize
+    // calculate the frequency resolutions being displayed - sampleRate/fftSize = range across bands
     private calcFreqs(sampleRate, fftSize) {
         // const fqRange = this._analyser.context.sampleRate / this._analyser.fftSize; // ie. 48000 / 32 = 1500 (1500 across 32 bands)
         const bands = fftSize/2; // bands are half the fftSize
