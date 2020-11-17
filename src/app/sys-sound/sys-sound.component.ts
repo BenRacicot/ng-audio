@@ -96,20 +96,17 @@ export class SysSoundComponent implements AfterViewInit, OnDestroy {
         this.bands = bandsTemp;
     }
 
-    // calculate the frequency resolutions being displayed - sampleRate/fftSize = range across bands
+    // calculate the frequency resolutions being displayed - sampleRate / eq band count
     private calcFreqs(sampleRate, fftSize) {
-        // const fqRange = this._analyser.context.sampleRate / this._analyser.fftSize; // ie. 48000 / 32 = 1500 (1500 across 32 bands)
         const bands = fftSize/2; // bands are half the fftSize
-        let fqRange = sampleRate / bands;
-        const div = fqRange / bands; //
+        const fqRange = sampleRate / bands;
         let allocated = [];
 
         for ( let i = 0, j = bands; i < j; i++ ) {
-            fqRange = Math.round(fqRange - div);
-            allocated.push(fqRange + '+');
+            sampleRate = Math.round(sampleRate - fqRange);
+            allocated.push(sampleRate);
         }
-        // console.log(allocated.reverse());
-        return allocated.reverse();
+        return allocated.slice().reverse();
     }
 
     // optimize ngFor
